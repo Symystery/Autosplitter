@@ -11,8 +11,8 @@ state("Outlast2")
 startup
 {
     vars.mapcomparison = "";
-	settings.Add("il", false, "Individual level start timing (Do not use for full runs!)");
-	settings.Add("standard", true, "Standard options");
+    settings.Add("il", false, "Individual level start timing (Do not use for full runs!)");
+    settings.Add("standard", true, "Standard options");
     settings.Add("genesis", true, "Genesis", "standard");
         settings.Add("crash", true, "The Crash", "genesis");
         settings.Add("compound", true, "The Compound", "genesis");
@@ -58,11 +58,11 @@ startup
 	    settings.Add("genesis2", true, "Genesis", "extended");
             settings.Add("crash2", true, "The Crash", "genesis2");
             settings.Add("compound2", true, "The Compound", "genesis2");
-			settings.Add("music2", true, "Saint Sybil School", "genesis2");
+	    settings.Add("music2", true, "Saint Sybil School", "genesis2");
             settings.Add("field2", true, "The Fields", "genesis2");
             settings.Add("cave2", true, "Heretic Cave", "genesis2");
             settings.Add("templegate2", true, "Temple Gate Town Square", "genesis2");
-			settings.Add("vent2", true, "Jessica's Death", "genesis2");
+	    settings.Add("vent2", true, "Jessica's Death", "genesis2");
             settings.Add("chapel2", true, "The Chapel", "genesis2");
             settings.Add("roadmine2", true, "The Road to the Mine", "genesis2");
             settings.Add("inner2", true, "Inner Demon", "genesis2");
@@ -194,7 +194,7 @@ var tB = (Func<string, string, string, bool, Tuple<string, string, string, bool>
     tB("inner", "CP_School_AdminAcetate", "Unforgivable", false), //wtf is an acetate 
     tB("inner", "CP_School_AdminDemon", "The First Demon Encounter", false),
     tB("scalled", "CP_SY_ToBridge", "Job/The Scalled Start", true),
-    tB("scalled", "CP_SY_Bridge", "Walking Across the Bridge", false),
+    tB("scalled", "CP_SY_Bridge", "Walking across the Bridge", false),
     tB("scalled", "CP_SY_BottomBridge", "Taking the Long Way", false),
     tB("scalled", "CP_SY_AfterEboulis", "Ran up the Tree", false),
     tB("scalled", "CP_SY_After1stCrawler", "Crawled through the Tree", false),
@@ -244,7 +244,7 @@ var tB = (Func<string, string, string, bool, Tuple<string, string, string, bool>
     tB("raft", "CP_RV_TreeBridge", "The Tree Bridge", false),
     tB("raft", "CP_RV_PostTree", "After the Tree Bridge", false),
     tB("raft", "CP_RV_HurrytoRaft", "Found the Raft", false),
-    tB("raft", "CP_RV_BackOnRaft", "Boarding the Raft again", true),
+    tB("raft", "CP_RV_BackOnRaft", "Boarding the Raft Again", true),
     tB("raft", "CP_RV_ThirdRapid", "The Third Rapids", false),
     tB("raft", "CP_RV_MinePrez", "The Mines Are Ahead", false),
     tB("raft", "CP_RV_FinalChase", "Heretics Chase", false),
@@ -265,7 +265,7 @@ var tB = (Func<string, string, string, bool, Tuple<string, string, string, bool>
     tB("library", "CP_School_Library", "The Library Maze", true),
     tB("library", "CP_School_Library_2", "Leaving the Library Maze", false),
     tB("library", "CP_School_ToWhiteLight", "Jessica Screams", false),
-    tB("batm", "CP_MF_CrankOn", "Blake against the Machine", true),
+    tB("batm", "CP_MF_CrankOn", "Blake against the Machine Start", true),
     tB("batm", "CP_MF_PushPull1", "Slide Open the Door", false),
     tB("batm", "CP_MF_PushPull2", "Climb over the Wall", false),
     tB("suicide", "CP_School_DeadJessica", "Murder before Suicide Start", true),
