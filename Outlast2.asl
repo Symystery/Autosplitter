@@ -11,8 +11,11 @@ state("Outlast2")
 startup
 {
     vars.mapcomparison = "";
-	settings.Add("il", false, "Individual level start timing (Do not use for full runs!)");
-	settings.Add("standard", true, "Standard options");
+    vars.startermap = "";
+    vars.finalsplit = false;
+    vars.runover = false;
+    settings.Add("il", false, "Individual level start timing (Do not use for full runs!)");
+    settings.Add("standard", true, "Standard options");
     settings.Add("genesis", true, "Genesis", "standard");
         settings.Add("crash", true, "The Crash", "genesis");
         settings.Add("compound", true, "The Compound", "genesis");
@@ -58,11 +61,11 @@ startup
 	    settings.Add("genesis2", true, "Genesis", "extended");
             settings.Add("crash2", true, "The Crash", "genesis2");
             settings.Add("compound2", true, "The Compound", "genesis2");
-			settings.Add("music2", true, "Saint Sybil School", "genesis2");
+	    settings.Add("music2", true, "Saint Sybil School", "genesis2");
             settings.Add("field2", true, "The Fields", "genesis2");
             settings.Add("cave2", true, "Heretic Cave", "genesis2");
             settings.Add("templegate2", true, "Temple Gate Town Square", "genesis2");
-			settings.Add("vent2", true, "Jessica's Death", "genesis2");
+	    settings.Add("vent2", true, "Jessica's Death", "genesis2");
             settings.Add("chapel2", true, "The Chapel", "genesis2");
             settings.Add("roadmine2", true, "The Road to the Mine", "genesis2");
             settings.Add("inner2", true, "Inner Demon", "genesis2");
@@ -351,37 +354,66 @@ init
     vars.doneMaps = new List<string>();
 }
 
+update
+{
+	// end timing
+	if ((current.map == "CP_BF_BaByIsBorn") && (current.zcoord < -19000.00) && (current.ycoord < -2000.00) && (current.xcoord < 1125.00) && (current.xcoord > 1100.00) && (!vars.runover))
+	{
+		vars.finalsplit = true;
+		vars.runover = true;
+	}
+}
+
 start
 {
-    if ((current.map == "CP_Crash_CrashSiteWakeUp") && (current.ingame == 1) && (old.ingame != 1))
+    if ((current.map == "CP_Crash_CrashSiteWakeUp") && (current.ingame == 1) && (old.ingame != 1) && (current.zcoord != 1985) && (current.ycoord != -5))
     {
         vars.doneMaps.Clear();
+		vars.startermap = current.map;
+		vars.finalsplit = false;
+		vars.runover = false;
         return true;
     }
 	
-	if ((settings[("il")]) && (current.ingame == 1) && (old.ingame != 1) && (vars.ILStartingList.Contains(current.map)))
+	if ((settings[("il")]) && (current.ingame == 1) && (old.ingame != 1) && (vars.ILStartingList.Contains(current.map)) && (current.zcoord != 1985) && (current.ycoord != -5))
 	{
 		vars.doneMaps.Clear();
+		vars.startermap = current.map;
+		vars.finalsplit = false;
+		vars.runover = false;
+		return true;
+	}
+}
+
+reset
+{
+	if ((old.ingame == 1) && (current.ingame == 0) && (current.map == vars.startermap))
+	{
 		return true;
 	}
 }
 
 onStart { // in case the timer is started manually
   vars.doneMaps.Clear();
+  vars.startermap = current.map;
+  vars.finalsplit = false;
+  vars.runover = false;
 }
 
 split
 {
     // checkpoint splitting
-    if ((current.map != old.map) && ((settings[current.map]) || (settings[current.map + "-"])) && (!vars.doneMaps.Contains(current.map)))
+    if ((current.map != old.map) && ((settings[current.map]) || (settings[current.map + "-"])) && (!vars.doneMaps.Contains(current.map)) && (current.map != vars.startermap))
     {
         vars.doneMaps.Add(current.map);
         return true;
     }
 	
-	// end timing
-	if ((current.map == "CP_BF_BaByIsBorn") && (current.zcoord < -19000.00) && (current.ycoord < -2000.00) && (current.xcoord < 1125.00) && (current.xcoord > 1100.00))
+	if(vars.finalsplit)
 	{
+		vars.finalsplit = false;
 		return true;
 	}
 }
+
+// cherry if you're reading this hiiiiii
