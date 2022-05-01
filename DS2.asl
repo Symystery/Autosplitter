@@ -54,6 +54,12 @@ startup
         }	    
 }
 
+onStart
+{
+    // This is a "cycle fix" that makes sure the timer always starts at 0.00 when starting during a load
+    timer.IsGameTimePaused = true;
+}
+
 init 
 {
     switch (modules.First().ModuleMemorySize) { // This is to know what version you are playing on
