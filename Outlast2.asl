@@ -382,12 +382,12 @@ update {
 	if((old.ingame != 1) && (current.ingame == 1)) { //either just went to main menu or went back into game
 		if ((current.zcoord.ToString("0") == "1985")) { //main menu
 			vars.Stopwatch.Start();
-			vars.DelayTime = 0.35;
+			vars.DelayTime = 2.20;
 			vars.black = true;
 		}
 	}
 
-	if (vars.Stopwatch.Elapsed.TotalSeconds >= vars.DelayTime) {
+	if ((vars.Stopwatch.Elapsed.TotalSeconds >= vars.DelayTime) || (current.zcoord.ToString("0") != "1985")) {
 		vars.Stopwatch.Reset();
 		vars.black = false;	
 	}
