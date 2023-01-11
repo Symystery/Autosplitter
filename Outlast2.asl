@@ -387,7 +387,7 @@ update {
 		}
 	}
 
-	if ((vars.Stopwatch.Elapsed.TotalSeconds >= vars.DelayTime) || (current.zcoord.ToString("0") != "1985")) {
+	if ((vars.Stopwatch.Elapsed.TotalSeconds >= vars.DelayTime) || (/*current.zcoord.ToString("0") != "1985"*/current.ingame != 1)) {
 		vars.Stopwatch.Reset();
 		vars.black = false;	
 	}
