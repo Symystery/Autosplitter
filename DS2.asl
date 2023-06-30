@@ -34,6 +34,11 @@ state("deadspace2", "OriginNoDLC") // Downpatched Origin Version
 startup  
             
 {
+  //Part of the cycle fix by Meta, ensures the timer will always start at 0.00 rather than 0.02 - 0.05
+    vars.TimerStart = (EventHandler) ((s, e) => timer.IsGameTimePaused = true);
+    timer.OnStart += vars.TimerStart;
+	refreshRate=30;
+
     settings.Add("ch1", true, "Chapter Splits");
     settings.Add("drill", false, "Split When You Land in Zero-G During Drill Skip"); // Community wants this to help with the timing for "Drill Skip"
 
@@ -107,5 +112,11 @@ split
         return true;
     }
 
+}
+
+shutdown
+{
+  //The rest of the cycle fix :)
+    timer.OnStart -= vars.TimerStart;
 }
 
